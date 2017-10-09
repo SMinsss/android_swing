@@ -1,0 +1,21 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.10'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+mainClassName = 'com.sm.swing.SMSwing'
+
+jar {
+    manifest {
+        attributes(
+                "Main-Class": mainClassName,
+                "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
+        )
+    }
+}
